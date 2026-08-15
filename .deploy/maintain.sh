@@ -61,7 +61,22 @@ echo "--- lint before: ${before:-<lint failed>}"
 echo "--- running maintenance (cwd=$PWD, timeout $TIMEOUT)"
 # NOTE: sudo is spelled out rather than reusing as_agent(). `timeout` execs a
 # real binary and cannot run a shell function — doing so fails with exit 127.
+#
+# TELEGRAM_STATE_DIR=/nonexistent is load-bearing, not cosmetic. The telegram
+# plugin is user-scope enabled, so its MCP server spawns for EVERY claude run —
+# including this one, which has no --channels. server.ts starts grammy polling
+# unconditionally at module load, so it would:
+#   1. SIGTERM whoever holds bot.pid (brain's poller) and steal the bot token,
+#      leaving brain permanently deaf after this run exits, and
+#   2. consume Telegram updates and confirm the offset — permanently deleting
+#      any message sent during the maintenance window, since the channel is
+#      inactive in this process so the notifications go nowhere.
+# Pointing STATE_DIR at a missing path makes the plugin fail to read its .env,
+# find no TELEGRAM_BOT_TOKEN, and exit(1) BEFORE constructing the Bot, stealing
+# the pid file, or polling. Expect a harmless "Connection failed" for this
+# server in the MCP logs — that is the guard working.
 timeout "$TIMEOUT" sudo -u agent -H env HOME=/home/agent PATH="$AGENT_PATH" \
+  TELEGRAM_STATE_DIR=/nonexistent \
   "$CLAUDE" -p "$(cat "$PROMPT_FILE")"
 rc=$?
 
