@@ -7,6 +7,14 @@ No vector DB, no embeddings — find things by reading `wiki/index.md` and by gr
 
 1. `raw/` — **immutable** source documents. Append only. NEVER edit or delete a file in `raw/`.
    Everything the wiki asserts must be traceable back here.
+
+   This rule is **not enforced by permissions** — denying write access to `raw/` also blocks
+   `/capture` from creating captures, so the harness cannot express "create new, never
+   overwrite". Immutability therefore rests on this rule. Concretely: only ever create a
+   `raw/` file at a path that does not already exist. Never open an existing `raw/` file for
+   modification. If a capture looks wrong, write a new file and note the correction in the
+   wiki — do not fix it in place. Timestamped filenames make collisions near-impossible;
+   if a target path already exists, that is a bug — stop and report it rather than overwriting.
 2. `wiki/` — pages you maintain, derived from `raw/`.
 3. `log.md` — append-only record of every operation.
 
