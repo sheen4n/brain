@@ -78,6 +78,12 @@ Every wiki page starts with:
 Regenerate the affected indexes on every ingest. A single flat index stops routing at
 roughly 200 pages, which is why the per-folder ones exist.
 
+Index files link with **plain Markdown links** (`[text](path.md)`), never `[[wikilinks]]`.
+Index pages are navigational, not graph nodes — lint excludes them as link targets, so
+wiki-linking them creates false broken-link reports. Meta/infrastructure pages that carry no
+sourced claims (like `open-questions.md`) declare `type: system` in frontmatter, which exempts
+them from the sourcing and orphan checks while staying valid `[[link]]` targets.
+
 ## Fan-out expectation
 
 A single non-trivial source normally touches **10–15 pages**: one source page, several entity
