@@ -59,7 +59,10 @@ before=$(lint_metrics)
 echo "--- lint before: ${before:-<lint failed>}"
 
 echo "--- running maintenance (cwd=$PWD, timeout $TIMEOUT)"
-timeout "$TIMEOUT" as_agent "$CLAUDE" -p "$(cat "$PROMPT_FILE")"
+# NOTE: sudo is spelled out rather than reusing as_agent(). `timeout` execs a
+# real binary and cannot run a shell function — doing so fails with exit 127.
+timeout "$TIMEOUT" sudo -u agent -H env HOME=/home/agent PATH="$AGENT_PATH" \
+  "$CLAUDE" -p "$(cat "$PROMPT_FILE")"
 rc=$?
 
 case "$rc" in
