@@ -1,0 +1,11 @@
+[Unit]
+Description=Nightly vault maintenance
+
+[Timer]
+OnCalendar=*-*-* 04:17:00
+Persistent=true
+# Avoid every box on the planet firing at exactly 04:17.
+RandomizedDelaySec=10min
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,15 @@
+Run nightly vault maintenance. Work only from what is on disk.
+
+1. Use the /lint skill: run .claude/scripts/lint.sh and read the report.
+2. Use the /ingest skill on every raw source listed under INGEST BACKLOG.
+   Follow the ingest workflow in CLAUDE.md exactly — source page, entity pages,
+   concept pages, citations, index regeneration, contradictions to
+   wiki/open-questions.md, log entry. Everything you author lands status: draft.
+3. Re-run .claude/scripts/lint.sh and repair what it reports, in the order the
+   /lint skill specifies: broken links, unsourced pages, orphans.
+4. Stop when lint reports broken=0 and the backlog is empty.
+
+Do not narrate every edit. Finish with a single summary: the before and after
+lint metrics lines, and a one-line list of pages created or updated.
+
+If the backlog is empty and lint is already clean, do nothing and say so.

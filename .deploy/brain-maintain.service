@@ -1,0 +1,11 @@
+[Unit]
+Description=Nightly vault maintenance (lint + ingest backlog)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/bash /home/agent/brain/.deploy/maintain.sh
+# Hard ceiling above the script's own timeout, so a wedged run can't hold the
+# vault hostage and leave brain stopped.
+TimeoutStartSec=45min
