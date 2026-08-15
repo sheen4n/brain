@@ -5,6 +5,10 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
+# Claude resolves its project directory from cwd; systemd defaults it to / .
+# maintain.sh also cd's to the vault, but set it here too so the unit is correct
+# on its own. Without it, settings.json is never loaded and every write is denied.
+WorkingDirectory=/home/agent/brain
 ExecStart=/bin/bash /home/agent/brain/.deploy/maintain.sh
 # Hard ceiling above the script's own timeout, so a wedged run can't hold the
 # vault hostage and leave brain stopped.
