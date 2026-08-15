@@ -1,0 +1,9 @@
+[Unit]
+Description=Nightly brain restart (clears context rot; state lives on disk)
+
+[Timer]
+OnCalendar=*-*-* 04:17:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

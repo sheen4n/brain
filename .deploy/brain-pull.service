@@ -1,0 +1,8 @@
+[Unit]
+Description=Pull vault changes from remote (picks up Mac web clips)
+
+[Service]
+Type=oneshot
+User=agent
+WorkingDirectory=/home/agent/brain
+ExecStart=/usr/bin/git pull --rebase --autostash -q origin main

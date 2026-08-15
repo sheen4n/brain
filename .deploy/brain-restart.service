@@ -1,0 +1,6 @@
+[Unit]
+Description=Restart brain agent
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl restart brain
