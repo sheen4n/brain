@@ -27,8 +27,7 @@
       "Read(~/.ssh/**)",
       "Read(~/.claude/.credentials.json)",
       "Bash(rm:*)",
-      "Edit(raw/**)",
-      "Write(raw/**)"
+      "Edit(raw/**)"
     ]
   }
 }
