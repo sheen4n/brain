@@ -1,0 +1,34 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          { "type": "command", "command": "$CLAUDE_PROJECT_DIR/.claude/hooks/commit.sh" }
+        ]
+      }
+    ]
+  },
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowedDomains": ["github.com", "api.telegram.org"]
+    }
+  },
+  "permissions": {
+    "allow": [
+      "Read", "Write", "Edit", "Glob", "Grep",
+      "Bash(.claude/scripts/lint.sh)",
+      "Bash(grep:*)", "Bash(find:*)", "Bash(ls:*)", "Bash(wc:*)", "Bash(sort:*)",
+      "Bash(git status:*)", "Bash(git add:*)", "Bash(git commit:*)",
+      "Bash(git push:*)", "Bash(git log:*)", "Bash(git diff:*)",
+      "WebFetch", "WebSearch"
+    ],
+    "deny": [
+      "Read(~/.ssh/**)",
+      "Read(~/.claude/.credentials.json)",
+      "Bash(rm:*)",
+      "Edit(raw/**)",
+      "Write(raw/**)"
+    ]
+  }
+}
