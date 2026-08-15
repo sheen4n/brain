@@ -1,2 +1,5 @@
 ## [2026-08-15] lint | pages=1 edges=0 broken=0 orphans=0 unsourced=0 backlog=0
 ## [2026-08-15] capture | brain-box-hel1-deploy-key
+## [2026-08-15] lint | pages=1 edges=0 broken=0 orphans=0 unsourced=0 backlog=1
+## [2026-08-15] ingest | raw/telegram/2026-08-15-081719-brain-box-hel1-deploy-key.md | pages touched: 8
+## [2026-08-15] lint | pages=5 edges=17 broken=0 orphans=0 unsourced=0 backlog=0

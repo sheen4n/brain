@@ -2,4 +2,4 @@
 
 One summary page per ingested raw document. Regenerated on every ingest.
 
-_None yet._
+- [2026-08-15 — brain box is hel1, deploy key is vault-only](2026-08-15-brain-box-hel1-deploy-key.md) — telegram note
