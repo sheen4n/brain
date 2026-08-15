@@ -5,6 +5,11 @@
 set -euo pipefail
 cd "${CLAUDE_PROJECT_DIR:-$HOME/brain}"
 
+# Byte-order collation everywhere. sort and comm must agree on ordering or comm aborts
+# with "input is not in sorted order"; under a UTF-8 locale they disagree as soon as a
+# page basename or alias contains capitals or spaces (e.g. "OLLA", "Woodleigh Mall").
+export LC_ALL=C
+
 TMP=$(mktemp -d "${TMPDIR:-/tmp}/vaultlint.XXXXXX")
 trap 'rm -rf "$TMP"' EXIT
 
