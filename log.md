@@ -6,3 +6,4 @@
 ## [2026-08-15] capture | woodleigh-cafes-search (web)
 ## [2026-08-15] ingest | raw/web/2026-08-15-084400-woodleigh-cafes-search.md | pages touched: 11
 ## [2026-08-15] lint | pages=13 edges=60 broken=0 orphans=0 unsourced=0 backlog=0
+## [2026-08-22] lint | pages=13 edges=60 broken=0 orphans=0 unsourced=0 backlog=0
